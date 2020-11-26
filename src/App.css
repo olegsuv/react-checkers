@@ -2,20 +2,8 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,15 +12,50 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 800px;
+  height: 800px;
+  margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cell {
+  width: 100px;
+  height: 100px;
+}
+
+.light {
+  background-color: #F0D2B4;
+}
+
+.dark {
+  background-color: #BA7A3A;
+}
+
+.teamA {
+  border-radius: 50%;
+  background-color: darkred;
+  margin: 20px;
+  width: 60px;
+  height: 60px;
+}
+
+.teamB {
+  border-radius: 50%;
+  background-color: black;
+  margin: 20px;
+  width: 60px;
+  height: 60px;
+}
+
+.focused {
+  box-shadow: 0 0 10px darkblue inset, 0 0 20px whitesmoke inset;
+  cursor: pointer;
+}
+
+.attack {
+  box-shadow: 0 0 10px darkmagenta inset, 0 0 20px whitesmoke inset;
+  cursor: pointer;
 }
