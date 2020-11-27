@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fb18286-c14d-410e-836a-7efd7c3de290" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="8fb18286-c14d-410e-836a-7efd7c3de290" name="Default Changelist" comment="Initial commit with most part of the final view">
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +27,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -70,6 +67,14 @@
       <option name="presentableId" value="Default" />
       <updated>1606424595949</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial commit with most part of the final view">
+      <created>1606434137442</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606434137442</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,8 +82,30 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Initial commit with most part of the final view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit with most part of the final view" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1606434148822">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="114" key="CommitChangelistDialog2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606434148822" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1606437396386">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606437396386" />
+    <state x="827" y="231" key="RollbackChangesDialog" timestamp="1606437396275">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="827" y="231" key="RollbackChangesDialog/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606437396275" />
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1606434143468">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606434143468" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606437492901">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606437492901" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606430738326">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

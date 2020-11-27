@@ -6,9 +6,10 @@ type Cell = {
     row: number,
     column: number,
     color: string,
-    isTeamFocused: boolean,
+    isUnitFocused: boolean,
     isCellMoveFocused: boolean,
     isCellAttackFocused: boolean,
+    canAttack: boolean,
     teamA: boolean,
     teamB: boolean
 }
@@ -31,9 +32,10 @@ class App extends React.Component {
                 row: Math.floor(i / 8),
                 column: i % 8,
                 color,
-                isTeamFocused: false,
+                isUnitFocused: false,
                 isCellMoveFocused: false,
                 isCellAttackFocused: false,
+                canAttack: false,
                 teamA: i < 24 && color === 'dark',
                 teamB: i >= 40 && color === 'dark'
             })
@@ -46,15 +48,18 @@ class App extends React.Component {
     }
 
     private getFieldCell(cell: Cell) {
-        let teamClass = 'team '
+        let unitClass = 'team '
         if (cell.teamA) {
-            teamClass += 'teamA '
+            unitClass += 'teamA '
         }
         if (cell.teamB) {
-            teamClass += 'teamB '
+            unitClass += 'teamB '
         }
-        if (cell.isTeamFocused) {
-            teamClass += 'focused '
+        if (cell.isUnitFocused) {
+            unitClass += 'focused '
+        }
+        if (cell.canAttack) {
+            unitClass += 'attack '
         }
 
         let cellClass = `cell ${cell.color} `
@@ -68,7 +73,7 @@ class App extends React.Component {
         return (
             <div key={cell.id} className={cellClass} onClick={() => this.onCellClick(cell)}>
                 {(cell.teamA || cell.teamB) && (
-                    <div className={teamClass} onClick={() => this.onTeamClick(cell)}/>
+                    <div className={unitClass} onClick={() => this.onUnitClick(cell)}/>
                 )}
             </div>
         )
@@ -90,83 +95,133 @@ class App extends React.Component {
         )
     }
 
-    private onCellClick(clickedCell: Cell) {
-        if (!clickedCell.isCellMoveFocused) {
-            return false
-        }
-
-        const field = [...this.state.field]
-        const clickedTeamID = field.findIndex((cell) => cell.isTeamFocused)
-        const clickedCellID = field.findIndex((cell) => cell.id === clickedCell.id)
-        if (clickedTeamID !== -1 && clickedCellID !== -1) {
-            field[clickedTeamID][this.state.currentTurn] = false
-            field[clickedCellID][this.state.currentTurn] = true
-        }
-        const newTurn = this.state.currentTurn === 'teamA' ? 'teamB' : 'teamA'
-        for (let i = 0; i < field.length; i++) {
-            field[i].isTeamFocused = false
-            field[i].isCellMoveFocused = false
-            field[i].isCellAttackFocused = false
-        }
-        this.setState({field, currentTurn: newTurn})
-    }
-
-    private getFocusedField(field: Cell[], clickedTeam: Cell, horizontalDirectionIndex: number) {
+    private getAttackedField(field: Cell[], checkingCell: Cell, horizontalDirectionIndex: number, mode: 'unit' | 'cell') {
         const temporaryField = [...field]
-        const verticalDirectionIndex = clickedTeam.teamA ? 1 : -1
-
-        //check move
-        let moveIndex = temporaryField.findIndex((cell) =>
-            cell.row === clickedTeam.row + verticalDirectionIndex &&
-            cell.column === clickedTeam.column + horizontalDirectionIndex &&
-            !cell.teamA &&
-            !cell.teamB
-        )
-        if (moveIndex !== -1) {
-            temporaryField[moveIndex].isCellMoveFocused = true
-            console.table(field)
-            return temporaryField
-        }
+        const verticalDirectionIndex = checkingCell.teamA ? 1 : -1
 
         //check attack
         const currentTeam = this.state.currentTurn
         const enemyTeam = this.state.currentTurn === 'teamA' ? 'teamB' : 'teamA'
         let checkingNearCellIndex = temporaryField.findIndex((cell) =>
-            cell.row === clickedTeam.row + verticalDirectionIndex &&
-            cell.column === clickedTeam.column + horizontalDirectionIndex
+            cell.row === checkingCell.row + verticalDirectionIndex &&
+            cell.column === checkingCell.column + horizontalDirectionIndex
         )
         if (checkingNearCellIndex !== -1 && temporaryField[checkingNearCellIndex][enemyTeam]) {
             let checkingFarCellIndex = temporaryField.findIndex((cell) =>
-                cell.row === clickedTeam.row + verticalDirectionIndex * 2 &&
-                cell.column === clickedTeam.column + horizontalDirectionIndex * 2
+                cell.row === checkingCell.row + verticalDirectionIndex * 2 &&
+                cell.column === checkingCell.column + horizontalDirectionIndex * 2
             )
             if (checkingFarCellIndex !== -1 &&
                 !temporaryField[checkingFarCellIndex][currentTeam] &&
                 !temporaryField[checkingFarCellIndex][enemyTeam]) {
-                temporaryField[checkingFarCellIndex].isCellAttackFocused = true
-                console.table(field)
+                if (mode === 'unit') {
+                    temporaryField[checkingCell.id].canAttack = true
+                }
+                if (mode === 'cell') {
+                    temporaryField[checkingFarCellIndex].isCellAttackFocused = true
+                }
                 return temporaryField
             }
         }
 
-        console.table(field)
         return temporaryField
     }
 
-    private onTeamClick(clickedTeam: Cell) {
-        if (!clickedTeam[this.state.currentTurn]) {
+    private checkAllTargets() {
+        let field = [...this.state.field]
+        const currentTeam = field.filter(cell => cell[this.state.currentTurn])
+        for (let i = 0; i < currentTeam.length; i++) {
+            field = this.getAttackedField(field, currentTeam[i], 1, 'unit')
+            field = this.getAttackedField(field, currentTeam[i], -1, 'unit')
+        }
+
+        this.setState({field})
+    }
+
+    private processTurn(field: Cell[]) {
+        const newTurn = this.state.currentTurn === 'teamA' ? 'teamB' : 'teamA'
+        for (let i = 0; i < field.length; i++) {
+            field[i].isUnitFocused = false
+            field[i].isCellMoveFocused = false
+            field[i].isCellAttackFocused = false
+            field[i].canAttack = false
+        }
+        this.setState({field, currentTurn: newTurn}, this.checkAllTargets)
+    }
+
+    private processMove(clickedCell: Cell) {
+        const field = [...this.state.field]
+        const clickedTeamID = field.findIndex((cell) => cell.isUnitFocused)
+        const clickedCellID = field.findIndex((cell) => cell.id === clickedCell.id)
+        field[clickedTeamID][this.state.currentTurn] = false
+        field[clickedCellID][this.state.currentTurn] = true
+        this.processTurn(field)
+    }
+
+    private processAttack(clickedCell: Cell) {
+        const field = [...this.state.field]
+        const clickedTeamID = field.findIndex((cell) => cell.isUnitFocused)
+        const clickedCellID = field.findIndex((cell) => cell.id === clickedCell.id)
+        const enemyTeam = this.state.currentTurn === 'teamA' ? 'teamB' : 'teamA'
+        const victimID = (clickedTeamID + clickedCell.id) / 2
+        field[clickedTeamID][this.state.currentTurn] = false
+        field[clickedCellID][this.state.currentTurn] = true
+        field[victimID][enemyTeam] = false
+        this.processTurn(field)
+    }
+
+    private onCellClick(clickedCell: Cell) {
+        if (clickedCell.isCellMoveFocused) {
+            this.processMove(clickedCell)
+        }
+        const isUnitFocused = this.state.field.filter((cell) => cell.isUnitFocused).length
+        if (isUnitFocused && clickedCell.isCellAttackFocused) {
+            this.processAttack(clickedCell)
+        }
+    }
+
+    private getMoveField(field: Cell[], clickedUnit: Cell, horizontalDirectionIndex: number) {
+        const temporaryField = [...field]
+        const verticalDirectionIndex = clickedUnit.teamA ? 1 : -1
+
+        let moveIndex = temporaryField.findIndex((cell) =>
+            cell.row === clickedUnit.row + verticalDirectionIndex &&
+            cell.column === clickedUnit.column + horizontalDirectionIndex &&
+            !cell.teamA &&
+            !cell.teamB
+        )
+        if (moveIndex !== -1) {
+            temporaryField[moveIndex].isCellMoveFocused = true
+            return temporaryField
+        }
+
+        return temporaryField
+    }
+
+    private onUnitClick(clickedUnit: Cell) {
+        if (!clickedUnit[this.state.currentTurn]) {
+            return false
+        }
+        const isAnyoneCanAttack = this.state.field.filter((cell) => cell.canAttack).length
+        if (isAnyoneCanAttack && !clickedUnit.canAttack) {
             return false
         }
 
         let field = [...this.state.field]
         for (let i = 0; i < field.length; i++) {
-            field[i].isTeamFocused = false
+            field[i].isUnitFocused = false
             field[i].isCellMoveFocused = false
+            field[i].isCellAttackFocused = false
         }
-        field[clickedTeam.id].isTeamFocused = true
+        field[clickedUnit.id].isUnitFocused = true
 
-        field = this.getFocusedField(field, clickedTeam, 1)
-        field = this.getFocusedField(field, clickedTeam, -1)
+        if (clickedUnit.canAttack) {
+            field = this.getAttackedField(field, clickedUnit, 1, 'cell')
+            field = this.getAttackedField(field, clickedUnit, -1, 'cell')
+        } else {
+            field = this.getMoveField(field, clickedUnit, 1)
+            field = this.getMoveField(field, clickedUnit, -1)
+        }
 
         this.setState({field})
     }
