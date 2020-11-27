@@ -150,9 +150,9 @@ class App extends React.Component {
     private checkAllTargets() {
         let field = [...this.state.field]
         const currentTeam = field.filter(cell => cell[this.state.currentTurn])
-        for (let i = 0; i < currentTeam.length; i++) {
-            field = this.getAttackedField(field, currentTeam[i], 1, 'unit')
-            field = this.getAttackedField(field, currentTeam[i], -1, 'unit')
+        for (let unit of currentTeam) {
+            field = this.getAttackedField(field, unit, 1, 'unit')
+            field = this.getAttackedField(field, unit, -1, 'unit')
         }
 
         this.setState({field}, this.brainLessAIMoves)
@@ -183,31 +183,31 @@ class App extends React.Component {
 
     private processTurn(field: Cell[]) {
         const newTurn = this.state.currentTurn === 'teamA' ? 'teamB' : 'teamA'
-        for (let i = 0; i < field.length; i++) {
-            field[i].isUnitFocused = false
-            field[i].isCellMoveFocused = false
-            field[i].isCellAttackFocused = false
-            field[i].canAttack = false
+        for (let cell of field) {
+            cell.isUnitFocused = false
+            cell.isCellMoveFocused = false
+            cell.isCellAttackFocused = false
+            cell.canAttack = false
         }
         this.setState({field, currentTurn: newTurn}, this.checkAllTargets)
     }
 
     private processMove(clickedCell: Cell) {
         const field = [...this.state.field]
-        const clickedTeamID = field.findIndex((cell) => cell.isUnitFocused)
+        const clickedUnitID = field.findIndex((cell) => cell.isUnitFocused)
         const clickedCellID = field.findIndex((cell) => cell.id === clickedCell.id)
-        field[clickedTeamID][this.state.currentTurn] = false
+        field[clickedUnitID][this.state.currentTurn] = false
         field[clickedCellID][this.state.currentTurn] = true
         this.processTurn(field)
     }
 
     private processAttack(clickedCell: Cell) {
         const field = [...this.state.field]
-        const clickedTeamID = field.findIndex((cell) => cell.isUnitFocused)
+        const clickedUnitID = field.findIndex((cell) => cell.isUnitFocused)
         const clickedCellID = field.findIndex((cell) => cell.id === clickedCell.id)
         const enemyTeam = this.state.currentTurn === 'teamA' ? 'teamB' : 'teamA'
-        const victimID = (clickedTeamID + clickedCell.id) / 2
-        field[clickedTeamID][this.state.currentTurn] = false
+        const victimID = (clickedUnitID + clickedCell.id) / 2
+        field[clickedUnitID][this.state.currentTurn] = false
         field[clickedCellID][this.state.currentTurn] = true
         field[victimID][enemyTeam] = false
         this.processTurn(field)
@@ -225,10 +225,10 @@ class App extends React.Component {
 
     private getFieldWithPossibleCells(clickedUnit: Cell) {
         let field = [...this.state.field]
-        for (let i = 0; i < field.length; i++) {
-            field[i].isUnitFocused = false
-            field[i].isCellMoveFocused = false
-            field[i].isCellAttackFocused = false
+        for (let cell of field) {
+            cell.isUnitFocused = false
+            cell.isCellMoveFocused = false
+            cell.isCellAttackFocused = false
         }
         field[clickedUnit.id].isUnitFocused = true
 
