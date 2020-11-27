@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+const classNames = require('classnames/bind');
 
 type Cell = {
     id: number,
@@ -50,27 +51,21 @@ class App extends React.Component {
     }
 
     private getFieldCell(cell: Cell) {
-        let unitClass = 'team '
-        if (cell.teamA) {
-            unitClass += 'teamA '
-        }
-        if (cell.teamB) {
-            unitClass += 'teamB '
-        }
-        if (cell.isUnitFocused) {
-            unitClass += 'focused '
-        }
-        if (cell.canAttack) {
-            unitClass += 'attack '
-        }
+        let unitClass = classNames({
+            team: true,
+            teamA: cell.teamA,
+            teamB: cell.teamB,
+            focused: cell.isUnitFocused,
+            attack: cell.canAttack,
+        })
 
-        let cellClass = `cell ${cell.color} `
-        if (cell.isCellMoveFocused) {
-            cellClass += 'focused '
-        }
-        if (cell.isCellAttackFocused) {
-            cellClass += 'attack '
-        }
+        let cellClass = classNames({
+            cell: true,
+            light: cell.color === 'light',
+            dark: cell.color === 'dark',
+            focused: cell.isCellMoveFocused,
+            attack: cell.isCellAttackFocused,
+        })
 
         return (
             <div key={cell.id} className={cellClass} onClick={() => this.onCellClick(cell)}>
@@ -81,6 +76,18 @@ class App extends React.Component {
         )
     }
 
+    private getGameState() {
+        let field = [...this.state.field]
+
+        if (!field.filter(cell => cell.teamA).length)
+            return "Team B has Won!"
+
+        if (!field.filter(cell => cell.teamB).length)
+            return "Team A has Won!"
+
+        return `Current turn: ${this.state.currentTurn === 'teamA' ? 'Team A' : 'Team B'}`
+    }
+
     public render() {
         return (
             <main className="App">
@@ -88,7 +95,7 @@ class App extends React.Component {
                     <h1>Checkers</h1>
                 </header>
                 <section className="game">
-                    <h2>Current turn: {this.state.currentTurn}</h2>
+                    <h2>{this.getGameState()}</h2>
                     <div className="board">
                         {this.state.field.map(this.getFieldCell.bind(this))}
                     </div>

@@ -5,6 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606480764183</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Some refactoring for/in/of/length">
+      <created>1606481478329</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606481478329</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,13 +108,14 @@
     <MESSAGE value="Initial commit with most part of the final view" />
     <MESSAGE value="Added attacks" />
     <MESSAGE value="Implement AI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement AI" />
+    <MESSAGE value="Some refactoring for/in/of/length" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some refactoring for/in/of/length" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1606480763733">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1606481477954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606480763733" />
+    <state x="585" y="114" key="CommitChangelistDialog2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606481477954" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1606437396386">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -114,10 +124,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="827" y="231" key="RollbackChangesDialog/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606437396275" />
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1606434143468">
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1606481479653">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606434143468" />
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606481479653" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606437492901">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
