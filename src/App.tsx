@@ -16,6 +16,8 @@ type Cell = {
 
 type CurrentTurn = 'teamA' | 'teamB'
 
+const brainLessAI = true
+
 class App extends React.Component {
     public state = {
         field: [] as Cell[],
@@ -95,6 +97,24 @@ class App extends React.Component {
         )
     }
 
+    private getMoveField(field: Cell[], clickedUnit: Cell, horizontalDirectionIndex: number) {
+        const temporaryField = [...field]
+        const verticalDirectionIndex = clickedUnit.teamA ? 1 : -1
+
+        let moveIndex = temporaryField.findIndex((cell) =>
+            cell.row === clickedUnit.row + verticalDirectionIndex &&
+            cell.column === clickedUnit.column + horizontalDirectionIndex &&
+            !cell.teamA &&
+            !cell.teamB
+        )
+        if (moveIndex !== -1) {
+            temporaryField[moveIndex].isCellMoveFocused = true
+            return temporaryField
+        }
+
+        return temporaryField
+    }
+
     private getAttackedField(field: Cell[], checkingCell: Cell, horizontalDirectionIndex: number, mode: 'unit' | 'cell') {
         const temporaryField = [...field]
         const verticalDirectionIndex = checkingCell.teamA ? 1 : -1
@@ -135,7 +155,30 @@ class App extends React.Component {
             field = this.getAttackedField(field, currentTeam[i], -1, 'unit')
         }
 
-        this.setState({field})
+        this.setState({field}, this.brainLessAIMoves)
+    }
+
+    private brainLessAIMoves() {
+        if (!brainLessAI || this.state.currentTurn === 'teamA') {
+            return false
+        }
+
+        let field = [...this.state.field]
+        let units = field.filter(cell => cell.teamB)
+        let attackingUnits = units.filter(unit => unit.canAttack)
+        if (attackingUnits.length) {
+            const attackedCell = this.getFieldWithPossibleCells(attackingUnits[0]).find(cell => cell.isCellAttackFocused)
+            // @ts-ignore
+            this.processAttack(attackedCell)
+        } else {
+            for (let unit of units) {
+                const movingCell = this.getFieldWithPossibleCells(unit).find(cell => cell.isCellMoveFocused)
+                if (movingCell) {
+                    this.processMove(movingCell)
+                    break;
+                }
+            }
+        }
     }
 
     private processTurn(field: Cell[]) {
@@ -180,33 +223,7 @@ class App extends React.Component {
         }
     }
 
-    private getMoveField(field: Cell[], clickedUnit: Cell, horizontalDirectionIndex: number) {
-        const temporaryField = [...field]
-        const verticalDirectionIndex = clickedUnit.teamA ? 1 : -1
-
-        let moveIndex = temporaryField.findIndex((cell) =>
-            cell.row === clickedUnit.row + verticalDirectionIndex &&
-            cell.column === clickedUnit.column + horizontalDirectionIndex &&
-            !cell.teamA &&
-            !cell.teamB
-        )
-        if (moveIndex !== -1) {
-            temporaryField[moveIndex].isCellMoveFocused = true
-            return temporaryField
-        }
-
-        return temporaryField
-    }
-
-    private onUnitClick(clickedUnit: Cell) {
-        if (!clickedUnit[this.state.currentTurn]) {
-            return false
-        }
-        const isAnyoneCanAttack = this.state.field.filter((cell) => cell.canAttack).length
-        if (isAnyoneCanAttack && !clickedUnit.canAttack) {
-            return false
-        }
-
+    private getFieldWithPossibleCells(clickedUnit: Cell) {
         let field = [...this.state.field]
         for (let i = 0; i < field.length; i++) {
             field[i].isUnitFocused = false
@@ -223,7 +240,21 @@ class App extends React.Component {
             field = this.getMoveField(field, clickedUnit, -1)
         }
 
-        this.setState({field})
+        return field
+    }
+
+    private onUnitClick(clickedUnit: Cell) {
+        if (!clickedUnit[this.state.currentTurn]) {
+            return false
+        }
+        const isAnyoneCanAttack = this.state.field.filter((cell) => cell.canAttack).length
+        if (isAnyoneCanAttack && !clickedUnit.canAttack) {
+            return false
+        }
+
+        const newField = this.getFieldWithPossibleCells(clickedUnit)
+
+        this.setState({field: newField})
     }
 }
 
