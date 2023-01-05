@@ -1,4 +1,4 @@
-# Demo task for Tesla, Jan 2020
+# Demo task for Tesla, Nov 2020
 
 # Checkers
 
