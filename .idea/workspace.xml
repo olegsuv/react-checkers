@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fb18286-c14d-410e-836a-7efd7c3de290" name="Default Changelist" comment="Title update" />
+    <list default="true" id="8fb18286-c14d-410e-836a-7efd7c3de290" name="Default Changelist" comment="manifest.json" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +33,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "D:\\Projects\\react-checkers\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -59,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606424595949</updated>
-      <workItem from="1673715527547" duration="503000" />
+      <workItem from="1673715527547" duration="823000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit with most part of the final view">
       <created>1606434137442</created>
@@ -103,11 +104,36 @@
       <option name="project" value="LOCAL" />
       <updated>1673715844380</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Revert package-lock.json">
+      <created>1673716130518</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673716130518</updated>
+    </task>
+    <task id="LOCAL-00008" summary="manifest.json">
+      <created>1673716300074</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673716300074</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -117,6 +143,8 @@
     <MESSAGE value="Some refactoring for/in/of/length" />
     <MESSAGE value="README.md update" />
     <MESSAGE value="Title update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Title update" />
+    <MESSAGE value="Revert package-lock.json" />
+    <MESSAGE value="manifest.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="manifest.json" />
   </component>
 </project>
