@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fb18286-c14d-410e-836a-7efd7c3de290" name="Default Changelist" comment="">
+    <list default="true" id="8fb18286-c14d-410e-836a-7efd7c3de290" name="Default Changelist" comment="README.md update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606424595949</updated>
-      <workItem from="1673715527547" duration="53000" />
+      <workItem from="1673715527547" duration="195000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit with most part of the final view">
       <created>1606434137442</created>
@@ -87,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606481478329</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="README.md update">
+      <created>1673715591499</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673715591499</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,32 +108,7 @@
     <MESSAGE value="Added attacks" />
     <MESSAGE value="Implement AI" />
     <MESSAGE value="Some refactoring for/in/of/length" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some refactoring for/in/of/length" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1606481477954">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606481477954" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1606437396386">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606437396386" />
-    <state x="827" y="231" key="RollbackChangesDialog" timestamp="1606437396275">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="827" y="231" key="RollbackChangesDialog/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606437396275" />
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1606481479653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606481479653" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606437492901">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606437492901" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606430738326">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.5.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606430738326" />
+    <MESSAGE value="README.md update" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.md update" />
   </component>
 </project>
